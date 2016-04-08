@@ -1,3 +1,4 @@
 *.d
 *.o
 bin/brightkite_test
+test/main_test

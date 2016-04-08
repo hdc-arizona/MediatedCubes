@@ -39,6 +39,7 @@ $(TARGET):
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
 
 
+.PHONY: test
 test: $(TEST)
 	./$(TEST)
 $(TEST): $(TEST_OBJ) $(OBJ)
