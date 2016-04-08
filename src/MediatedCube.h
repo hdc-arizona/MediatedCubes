@@ -22,7 +22,7 @@ public:
 		hasher_type hasher;
 		refcount_type refcount;
 
-		witness_data() = default;
+		witness_data() : summary(0), hasher(Hasher()), refcount(0) {}
 		witness_data(witness_data const & other) = default;
 		witness_data(summary_type s, hasher_type h, refcount_type r) 
 			: summary(s), hasher(h), refcount(r) {}

@@ -4,7 +4,7 @@
 #include <cassert>
 #include <iostream>
 
-MediatedCube::MediatedCube() { }
+MediatedCube::MediatedCube() : id(0), address_to_witness(), witness_to_data() { }
 
 void MediatedCube::add(Address a, summary_type value) {
 	id_type current_id = id++;
@@ -43,7 +43,7 @@ void MediatedCube::add(Address a, summary_type value) {
 			}
 		}
 
-		assert(witness_to_data[new_witness].refcount == 0 && "Hash collision?!?");
+		assert(witness_to_data.count(new_witness) == 0 && "Hash collision?!?");
 
 		witness_to_data[new_witness] = {
 			old_value + value, 

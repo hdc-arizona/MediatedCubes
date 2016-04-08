@@ -6,11 +6,13 @@
 class DimAddress {
 
 public:
+	typedef uint64_t address_type;
+
 	DimAddress(std::string key);
 
-	std::vector<uint64_t> prefixes();
+	std::vector<address_type> prefixes();
 
-	uint64_t exact();
+	address_type exact();
 
 	friend std::ostream &operator<<(std::ostream & o, DimAddress const& d);
 

@@ -6,12 +6,11 @@
 
 Address::Address(std::vector<DimAddress> addresses) : addresses(addresses) {}
 
-std::vector<Address::prefix_type>
-Address::prefixes() {
+std::vector<Address::component_type> Address::prefixes() {
 
-	std::vector<Address::prefix_type> partials = {{}};
+	std::vector<Address::component_type> partials = {{}};
 	for(auto address : addresses) {
-		std::vector<Address::prefix_type> temp;
+		std::vector<Address::component_type> temp;
 		for(auto s : address.prefixes()) {
 			for(auto p : partials) {
 				p.push_back(s);
@@ -24,9 +23,8 @@ Address::prefixes() {
 	return partials;
 }
 
-Address::prefix_type
-Address::exact() {
-	Address::prefix_type out;
+Address::component_type Address::exact() {
+	Address::component_type out;
 	for(auto a : addresses)
 		out.push_back(a.exact());
 	return out;

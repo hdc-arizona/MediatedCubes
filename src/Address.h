@@ -10,12 +10,12 @@
 class Address {
 
 public:
-	typedef std::vector<uint64_t> prefix_type;
+	typedef std::vector<DimAddress::address_type> component_type;
 
 	Address(std::vector<DimAddress> addresses);
 
-	std::vector<prefix_type> prefixes();
-	prefix_type exact();
+	std::vector<component_type> prefixes();
+	component_type exact();
 
 	friend std::ostream &operator<<(std::ostream & o, Address const& a);
 
@@ -25,8 +25,8 @@ private:
 };
 
 namespace std {
-	template<> struct hash<Address::prefix_type> {
-		typedef Address::prefix_type argument_type;
+	template<> struct hash<Address::component_type> {
+		typedef Address::component_type argument_type;
 		typedef size_t result_type;
 		result_type operator()(argument_type const& a) const {
 			return boost::hash_range(a.begin(), a.end());	

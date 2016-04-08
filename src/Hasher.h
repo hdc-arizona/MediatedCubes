@@ -13,9 +13,9 @@ public:
 	typedef CryptoPP::SHA256 hash_type;
 	typedef std::vector<uint8_t> digest_type;
 
-	Hasher() = default;
-	Hasher(Hasher & other) = default;
-	Hasher(Hasher const & other) = default;
+	Hasher() : hasher() {}
+	Hasher(Hasher & other) : hasher(other.hasher) {}
+	Hasher(Hasher const & other) : hasher(other.hasher) {}
 
 	template <typename T>
 	void update(T x);
