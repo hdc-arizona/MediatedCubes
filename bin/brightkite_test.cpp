@@ -39,7 +39,7 @@ string to_b(uint32_t x) {
 	return s;
 }
 
-void mem_info() {
+string mem_info() {
 	memory_util::MemInfo m = memory_util::MemInfo::get();
 	stringstream ss;
 	ss << "Memory (MB): " << m.res_MB();
