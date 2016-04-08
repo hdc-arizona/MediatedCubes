@@ -8,7 +8,7 @@
 class MediatedCube {
 
 public:
-	typedef std::vector<std::string> prefix_sequence;
+	typedef std::vector<uint64_t> prefix_sequence;
 	typedef std::vector<uint8_t> witness_type;
 
 	typedef Hasher hasher_type;

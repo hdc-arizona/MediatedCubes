@@ -1,22 +1,28 @@
 #include "DimAddress.h"
 
 #include <numeric>
+#include <iostream>
 #include <iterator>
 
-DimAddress::DimAddress(std::string key) : key(key) { }
+DimAddress::DimAddress(std::string key) : key("1" + key) { }
 
-std::vector<std::string>
+std::vector<uint64_t>
 DimAddress::prefixes() {
-	std::vector<std::string> prefixes(key.size() + 1);
+	std::vector<uint64_t> prefixes(key.size());
 
-	for(std::string::size_type i = 0; i <= key.size(); i++)
-		prefixes[i] = key.substr(0, i);
+	size_t len;
+	uint64_t x = stol(key, &len, 2);
+
+	for(std::string::size_type i = 0; i < key.size(); i++) {
+		prefixes[i] = (((x >> i) & 0xFFFFFFFF) << 32 ) | (key.size() - i);
+	}
 
 	return prefixes;
 }
 
-std::string DimAddress::exact() {
-	return key;
+uint64_t DimAddress::exact() {
+	uint64_t x = stol(key, 0, 2);
+	return (x << 32 ) | key.size();
 }
 
 std::ostream &operator<<(std::ostream & o, DimAddress const& d) {

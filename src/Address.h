@@ -10,7 +10,7 @@
 class Address {
 
 public:
-	typedef std::vector<std::string> prefix_type;
+	typedef std::vector<uint64_t> prefix_type;
 
 	Address(std::vector<DimAddress> addresses);
 

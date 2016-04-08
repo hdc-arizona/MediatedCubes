@@ -8,9 +8,9 @@ class DimAddress {
 public:
 	DimAddress(std::string key);
 
-	std::vector<std::string> prefixes();
+	std::vector<uint64_t> prefixes();
 
-	std::string exact();
+	uint64_t exact();
 
 	friend std::ostream &operator<<(std::ostream & o, DimAddress const& d);
 

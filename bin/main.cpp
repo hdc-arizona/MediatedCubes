@@ -41,7 +41,7 @@ void log_mem_info() {
 }
 
 int main() {
-	
+
 	MediatedCube m;
 
 	log_mem_info();
