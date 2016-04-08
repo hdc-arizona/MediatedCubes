@@ -15,7 +15,7 @@ DEPENDS  = $(patsubst src/%,.src.%.d,$(SRC))
 DEPENDS += $(patsubst src/%,.src.%.d,$(HEADERS))
 DEPENDS += $(patsubst test/%,.test.%.d,$(TEST_SRC))
 
-TARGET   = bin/Nanocube.so
+TARGET   = 
 
 PROGS    = $(patsubst %.cpp,%,$(wildcard bin/*.cpp))
 
@@ -26,8 +26,8 @@ debug: CXXFLAGS += -g -p
 debug: all
 
 
-prod: CXXFLAGS += -O2 -DNDEBUG
-prod: all
+fast: CXXFLAGS += -O2 -DNDEBUG
+fast: all
 
 
 $(OBJ) : Makefile

@@ -1,2 +1,3 @@
 *.d
 *.o
+bin/brightkite_test
