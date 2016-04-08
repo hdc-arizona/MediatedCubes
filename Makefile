@@ -1,7 +1,8 @@
-CXXFLAGS  = -Wall -Wextra -pedantic -Weffc++ -Werror
-CXXFLAGS += -std=c++14
+# -Weffc++ is a little ambitious right now, put it back later.
+CXXFLAGS  = -Wall -Wextra -pedantic -Werror
+CXXFLAGS += -std=c++11
 CXXFLAGS += -Isrc
-LDLIBS  = -lcrypto++ -ltcmalloc # -lpython2.7 -lboost_python
+LDLIBS  = -lcryptopp -ltcmalloc # -lpython2.7 -lboost_python
 
 SRC      = $(wildcard src/*.cpp)
 HEADERS  = $(wildcard src/*.h)
