@@ -9,6 +9,10 @@
 #include "Mercator.h"
 #include "MemoryUtil.h"
 
+/*
+ * Cat the contents of the brightkite data into this (skip the header please).
+ */
+
 using namespace std;
 
 vector<string> split(string s, char c) {
@@ -35,20 +39,23 @@ string to_b(uint32_t x) {
 	return s;
 }
 
-void log_mem_info() {
+void mem_info() {
 	memory_util::MemInfo m = memory_util::MemInfo::get();
-	cout << "Memory (MB): " << m.res_MB() << endl;
+	stringstream ss;
+	ss << "Memory (MB): " << m.res_MB();
+	return ss.str();
 }
 
 int main() {
 
 	MediatedCube m;
+	Address all({ DimAddress(""), DimAddress(""), DimAddress("") });
 
-	log_mem_info();
+	cout << mem_info() << endl;
+
 
 	auto start = chrono::high_resolution_clock::now();
 
-	Address all({ DimAddress(""), DimAddress(""), DimAddress("") });
 
 	string line;
 	size_t count = 0;
@@ -63,22 +70,19 @@ int main() {
 		if((count + 1) % 100 == 0) {
 			auto summary = m.size_summary();
 			cout << "Count = " << count + 1 
-				<< ", Cube reports " << m.lookup(all) 
-				<< ", With table sizes " 
+				<< ", Cube reports table sizes "
 				<< "(" << get<0>(summary) << ", " << get<1>(summary) << ")"
-				<< ", ";
-			log_mem_info();
+				<< ", " << mem_info() << endl;
 		}
 		count++;
 	}
 
 	auto end = chrono::high_resolution_clock::now();
-
 	auto duration = (end - start).count();
 	cout << "Time: " << duration / 1000000000 
 		<< "." << (duration / 1000000) % 1000 << endl;
 
-	log_mem_info();
+	cout << mem_info() << endl;
 
 	return 0;
 }
